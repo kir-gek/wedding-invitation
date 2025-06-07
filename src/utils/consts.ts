@@ -1,1 +1,1 @@
-export const START_ROUTE = '/secret-form'
+export const START_ROUTE = '/'
