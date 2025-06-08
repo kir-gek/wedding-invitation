@@ -3,14 +3,16 @@ import k_k from "../../assets/K-K.jpg";
 
 interface DearNameProps {
   nameGuest: string;
+  gender: string;
 }
 
-export const DearName: React.FC<DearNameProps> = ({nameGuest}) => {
+export const DearName: React.FC<DearNameProps> = ({ nameGuest, gender }) => {
   return (
     <div className="bg-white text-center px-6 py-10 max-w-md mx-auto font-serif text-gray-800 space-y-6">
       {/* Заголовок */}
       <h1 className="text-4xl font-[Great_Vibes] text-black italic">
-        Дорогой(ая) {nameGuest}!
+        {gender === "m" ? "Дорогой " : gender === "w" ? "Дорогая " : "ПРЕКОЛ"}
+        {nameGuest}!
       </h1>
 
       {/* Описание */}

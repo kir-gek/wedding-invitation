@@ -4,7 +4,10 @@ import { DearName } from "../../components/Invation/DearName";
 
 export const InvitationWithoutRest: React.FC = () => {
   const { name } = useParams();
+  const { gender } = useParams();
   const decodedName = name ? decodeURIComponent(name) : null;
+  const decodedGender = gender ? decodeURIComponent(gender) : null;
+
   console.log(decodedName);
 
   return (
@@ -20,7 +23,10 @@ export const InvitationWithoutRest: React.FC = () => {
 
         <div className="px-8 py-6">
           <Start />
-          <DearName nameGuest={decodedName ? decodedName : "Гость"} />
+          <DearName
+            nameGuest={decodedName ? decodedName : "Гость"}
+            gender={decodedGender ? decodedGender : "g"}
+          />
 
           {/* Информация */}
           <div className="p-8 md:p-12 space-y-6">

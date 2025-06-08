@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 export function NameForm() {
   const [name, setName] = useState("");
   const [restState, setRestState] = useState("");
+  const [gender, setGender] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (name.trim()) {
-      navigate(`/invite${restState}/${encodeURIComponent(name)}`);
+      navigate(`/invite${restState}/${gender}/${encodeURIComponent(name)}`);
     }
   };
 
@@ -31,6 +32,20 @@ export function NameForm() {
           />
         </div>
 
+        <div>
+          <select
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+          >
+            <option value="" disabled>
+              Пол человека
+            </option>
+            <option value="m">Мужчина</option>
+            <option value="w">Женщина</option>
+            <option value="g">Фу а это че</option>
+          </select>
+        </div>
         <div>
           <select
             value={restState}
@@ -61,7 +76,7 @@ export function NameForm() {
 
           <div className="flex items-center space-x-2">
             <code className="flex-1 p-2 bg-white border border-gray-300 rounded text-sm overflow-x-auto">
-              {window.location.origin}/invite{restState}/
+              {window.location.origin}/invite{restState}/{gender}/
               {encodeURIComponent(name)}
             </code>
 
@@ -70,7 +85,7 @@ export function NameForm() {
                 navigator.clipboard.writeText(
                   `${
                     window.location.origin
-                  }/invite${restState}/${encodeURIComponent(name)}`
+                  }/invite${restState}/${gender}/${encodeURIComponent(name)}`
                 )
               }
               className="p-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition duration-200"
