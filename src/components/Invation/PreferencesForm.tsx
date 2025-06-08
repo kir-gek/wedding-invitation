@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createZapis } from "../../api";
 
 interface Forminterface {
   nameGuest: string | null;
@@ -12,22 +13,21 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = {
-      name: nameGuest || "Гость",
-      going: "Идет",
-      food: foodPreference,
-      alcohol: alcoholPreference,
-      comment: comment,
-    };
+    // const formData = {
+    //   name: nameGuest || "Гость",
+    //   going: "Идет",
+    //   food: foodPreference,
+    //   alcohol: alcoholPreference,
+    //   comment: comment,
+    // };
 
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbyjJaQM0E0jc09u3EZs__a88MWUImsA9Um-rxvC4BwQk2JCGIvet-FXDVpHKhtyIo9Y/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: { "Content-Type": "application/json" },
-        }
+      await createZapis(
+        nameGuest ? nameGuest : "Гость",
+        "идёт",
+        foodPreference,
+        alcoholPreference,
+        comment
       );
 
       alert("Спасибо! Ваши предпочтения учтены 💌");
