@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CountdownTimer } from "../../components/CountDownTimer";
-import { Start } from "../../components/Invation/Start";
 
 export function NameForm() {
   const [name, setName] = useState("");
