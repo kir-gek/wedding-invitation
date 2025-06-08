@@ -1,16 +1,40 @@
 import React, { useState } from "react";
 
-export const PreferencesForm: React.FC = () => {
+interface Forminterface {
+  nameGuest: string | null;
+}
+
+export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
   const [foodPreference, setFoodPreference] = useState("");
   const [alcoholPreference, setAlcoholPreference] = useState("");
   const [comment, setComment] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Еда:", foodPreference);
-    console.log("Алкоголь:", alcoholPreference);
-    console.log("Комментарий:", comment);
-    alert("Спасибо! Ваши предпочтения учтены 💌");
+
+    const formData = {
+      name: nameGuest || "Гость",
+      going: "Идет",
+      food: foodPreference,
+      alcohol: alcoholPreference,
+      comment: comment,
+    };
+
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyjJaQM0E0jc09u3EZs__a88MWUImsA9Um-rxvC4BwQk2JCGIvet-FXDVpHKhtyIo9Y/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      alert("Спасибо! Ваши предпочтения учтены 💌");
+    } catch (error) {
+      console.error("Ошибка при отправке:", error);
+      alert("Произошла ошибка при отправке. Попробуйте ещё раз.");
+    }
   };
 
   return (
@@ -19,27 +43,31 @@ export const PreferencesForm: React.FC = () => {
         Ваши предпочтения
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6 text-gray-800  relative z-10">
-
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 text-gray-800  relative z-10"
+      >
         {/* Блок: предпочтения по еде */}
         <div>
           <h3 className="text-lg font-semibold mb-3 text-rose-700">
             Есть ли у вас особые предпочтения по еде?
           </h3>
           <div className="space-y-2 pl-2">
-            {["нет", "не ем мясо", "не ем рыбу", "вегетарианец"].map((option) => (
-              <label key={option} className="block">
-                <input
-                  type="radio"
-                  name="food"
-                  value={option}
-                  checked={foodPreference === option}
-                  onChange={(e) => setFoodPreference(e.target.value)}
-                  className="mr-2 accent-rose-500"
-                />
-                {option}
-              </label>
-            ))}
+            {["нет", "не ем мясо", "не ем рыбу", "вегетарианец"].map(
+              (option) => (
+                <label key={option} className="block">
+                  <input
+                    type="radio"
+                    name="food"
+                    value={option}
+                    checked={foodPreference === option}
+                    onChange={(e) => setFoodPreference(e.target.value)}
+                    className="mr-2 accent-rose-500"
+                  />
+                  {option}
+                </label>
+              )
+            )}
           </div>
         </div>
 
@@ -74,7 +102,10 @@ export const PreferencesForm: React.FC = () => {
 
         {/* Блок: комментарий */}
         <div>
-          <label htmlFor="comment" className="block font-medium text-rose-700 mb-2">
+          <label
+            htmlFor="comment"
+            className="block font-medium text-rose-700 mb-2"
+          >
             Комментарий
           </label>
           <textarea

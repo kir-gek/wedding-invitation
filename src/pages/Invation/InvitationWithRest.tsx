@@ -9,7 +9,7 @@ export const InvitationWithRest: React.FC = () => {
   const { gender } = useParams();
   const decodedName = name ? decodeURIComponent(name) : null;
   const decodedGender = gender ? decodeURIComponent(gender) : null;
-  console.log(decodedName);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-100 flex items-center justify-center p-6">
@@ -61,7 +61,7 @@ export const InvitationWithRest: React.FC = () => {
 
             <WeddingSchedule />
 
-            <PreferencesForm />
+            <PreferencesForm nameGuest={decodedName} />
           </div>
         </div>
 
