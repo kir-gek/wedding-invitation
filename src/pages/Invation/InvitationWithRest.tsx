@@ -1,4 +1,8 @@
 import { useParams } from "react-router-dom";
+import { Start } from "../../components/Invation/Start";
+import { DearName } from "../../components/Invation/DearName";
+import { WeddingSchedule } from "../../components/Invation/WeddingSchedule";
+import { PreferencesForm } from "../../components/Invation/PreferencesForm";
 
 export const InvitationWithRest: React.FC = () => {
   const { name } = useParams();
@@ -6,98 +10,58 @@ export const InvitationWithRest: React.FC = () => {
   console.log(decodedName);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-50 flex items-center justify-center p-6">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-rose-100">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-100 flex items-center justify-center p-6">
+      <div className="max-w-3xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden border-8 border-rose-200 relative">
         {/* Красивая шапка */}
-        <div className="bg-rose-500 py-8 px-6 text-center">
-          <h1 className="text-4xl font-serif font-bold text-white mb-2">
+        <div className="bg-rose-600 py-12 px-6 text-center relative overflow-hidden rounded-t-2xl shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-rose-500 opacity-50 z-0"></div>
+          <h1 className="text-5xl font-serif font-bold text-white mb-2 relative z-10">
             Кирюша & Катюша
           </h1>
-          <p className="text-rose-100 text-lg">15 июля 2025</p>
+          <h2 className="text-xl text-white font-semibold relative z-10">
+            Свадьба мечты
+          </h2>
         </div>
 
-        <div className="p-8 md:p-12 space-y-6">
-          <h1 className="text-3xl font-serif text-rose-800 text-center">
-            Дорогой(ая) <span className="font-bold">{decodedName}!</span>
-          </h1>
+        <div className="px-8 py-6">
+          <Start />
+          <DearName nameGuest={decodedName ? decodedName : "Гость"} />
 
-          <div className="space-y-4 text-gray-700 text-center">
-            <p className="text-xl">Приглашаем вас на нашу свадьбу!</p>
+          {/* Информация */}
+          <div className="p-8 md:p-12 space-y-6">
+            <h2 className="text-2xl font-semibold text-rose-600">Меню</h2>
+            <p className="text-lg leading-relaxed text-gray-700">
+              Меню разнообразно, поэтому сообщите нам заранее, если у вас есть
+              какие-либо предпочтения или диетические ограничения. После
+              подтверждения вы сможете пройти опрос о своих вкусовых
+              предпочтениях и напитках.
+            </p>
 
-            <div className="flex flex-col items-center space-y-1">
-              <p className="flex items-center">
-                <svg
-                  className="w-5 h-5 mr-2 text-rose-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span>15 июля 2025 года</span>
-              </p>
+            <h2 className="text-2xl font-semibold text-rose-600">
+              Пожелания по подаркам
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-700">
+              Ваше присутствие в день нашей свадьбы - самый значимый подарок для
+              нас! Мы понимаем, что дарить цветы на свадьбу - это традиция и
+              если для вас это важно, то мы с радостью примем их!
+            </p>
 
-              <p className="flex items-center">
-                <svg
-                  className="w-5 h-5 mr-2 text-rose-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                </svg>
-                <span>ВДНХ, Москва</span>
-              </p>
+            <h2 className="text-2xl font-semibold text-rose-600">Примечание</h2>
+            <p className="text-lg leading-relaxed text-gray-700">
+              Будем благодарны, если вы воздержитесь от криков "Горько" на
+              празднике, ведь поцелуй — это знак выражения чувств, он не может
+              быть по заказу и считаем, что он должен оставаться семейным
+              таинством!
+            </p>
 
-              <p className="flex items-center">
-                <svg
-                  className="w-5 h-5 mr-2 text-rose-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <span>Начало в 12:30</span>
-              </p>
-            </div>
-          </div>
+            <WeddingSchedule />
 
-          {/* Ваш оригинальный контент */}
-          <div className="text-center py-4 border-t border-b border-rose-100 my-6">
-            <h1 className="text-2xl font-bold text-rose-600">
-              Вы будете ЖРАТЬ в рестиоране
-            </h1>
-          </div>
-
-          {/* Кнопка подтверждения */}
-          <div className="text-center pt-4">
-            <button className="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-full shadow-lg transform hover:scale-105 transition duration-300">
-              Подтвердить присутствие
-            </button>
+            <PreferencesForm />
           </div>
         </div>
+
+        {/* Фон с узорами */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pink-200 to-transparent opacity-20 z-0"></div>
       </div>
     </div>
   );

@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        great: ['"Great Vibes"', "cursive"],
+      },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out",
       },
