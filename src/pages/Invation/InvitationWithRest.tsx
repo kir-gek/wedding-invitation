@@ -5,10 +5,24 @@ import { WeddingSchedule } from "../../components/Invation/WeddingSchedule";
 import { PreferencesForm } from "../../components/Invation/PreferencesForm";
 
 export const InvitationWithRest: React.FC = () => {
-  const { name } = useParams();
-  const { gender } = useParams();
-  const decodedName = name ? decodeURIComponent(name) : null;
-  const decodedGender = gender ? decodeURIComponent(gender) : null;
+ 
+  const { encoded } = useParams<{ encoded: string }>();
+
+let decodedName = "Гость";
+let decodedGender = "g";
+
+if (encoded) {
+  try {
+    const decoded = decodeURIComponent(escape(atob(encoded)));
+    const [gender, name] = decoded.split("|");
+    decodedName = name;
+    decodedGender = gender;
+  } catch (error) {
+    console.error("Ошибка при декодировании:", error);
+  }
+}
+
+
 
 
   return (

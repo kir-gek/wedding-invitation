@@ -9,8 +9,12 @@ export const publicRoutes = [
         path: START_ROUTE,
         Component: NameForm
     },
+    // {
+    //     path: "/invite456/:gender/:name",
+    //     Component: InvitationWithRest
+    // },
     {
-        path: "/invite456/:gender/:name",
+        path: "/invite456/:encoded",
         Component: InvitationWithRest
     },
     {

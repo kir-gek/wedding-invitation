@@ -7,11 +7,19 @@ export function NameForm() {
   const [gender, setGender] = useState<string>("");
   const navigate = useNavigate();
 
+  function encodeGuestInfo(gender: string, name: string): string {
+    const combined = `${gender}|${name}`;
+    return btoa(unescape(encodeURIComponent(combined)));
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (name.trim()) {
-      navigate(`/invite${restState}/${gender}/${encodeURIComponent(name)}`);
-    }
+    const encoded = encodeGuestInfo(gender, name);
+    navigate(`/invite${restState}/${encoded}`);
+
+    // if (name.trim()) {
+    //   navigate(`/invite${restState}/${gender}/${encodeURIComponent(name)}`);
+    // }
   };
 
   return (
@@ -85,7 +93,7 @@ export function NameForm() {
                 navigator.clipboard.writeText(
                   `${
                     window.location.origin
-                  }/invite${restState}/${gender}/${encodeURIComponent(name)}`
+                  }/invite${restState}/${encodeGuestInfo(gender, name)}`
                 )
               }
               className="p-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition duration-200"
