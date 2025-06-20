@@ -9,9 +9,12 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
   const [foodPreference, setFoodPreference] = useState("");
   const [alcoholPreference, setAlcoholPreference] = useState("");
   const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [reqDone, setReqDone] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // начинаем загрузку
 
     try {
       await createZapis(
@@ -21,11 +24,13 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
         alcoholPreference,
         comment
       );
-
+      setReqDone(true)
       alert("Спасибо! Ваши предпочтения учтены 💌");
     } catch (error) {
       console.error("Ошибка при отправке:", error);
       alert("Произошла ошибка при отправке. Попробуйте ещё раз.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -115,13 +120,26 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
 
         {/* Кнопка */}
         <div className="text-center pt-4">
-          <button
-            type="submit"
-            className="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-full shadow-lg transform hover:scale-105 transition duration-300"
-          >
-            Подтвердить присутствие
-          </button>
+          {!isLoading ? (
+            <button
+              type="submit"
+              className="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-full shadow-lg transform hover:scale-105 transition duration-300"
+              disabled={isLoading}
+            >
+              Подтвердить присутствие
+            </button>
+          ) : (
+            // Простой спиннер (можно заменить на любую анимацию)
+            <div className="inline-block w-8 h-8 border-4 border-rose-600 border-t-transparent rounded-full animate-spin"></div>
+          )}
         </div>
+
+        {reqDone && (
+  <div className="text-white bg-green-600 text-xl font-bold px-6 py-4 rounded-lg animate-pulse select-none">
+    Спасибо, ваш ответ учтён!
+  </div>
+)}
+
       </form>
     </div>
   );
