@@ -34,7 +34,8 @@ export const DearName: React.FC<DearNameProps> = ({ nameGuest, gender }) => {
           <img
             src={k_k} // путь к фото
             alt="Couple"
-            className="w-full h-full object-cover"
+            className="w-full h-full 
+            "
           />
         </div>
       </div>

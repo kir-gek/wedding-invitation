@@ -6,7 +6,7 @@ const $Host = axios.create({
     headers: {
         'Content-Type': 'text/plain' // Важно для GAS
     },
-    baseURL: "https://script.google.com/macros/s/AKfycbyq4O8lpSOqN7L8nzvqEs4PdmB4pBrALzMuyFWNjls8_XmN4FG_na5fxFXfLLlE8zs5/exec"
+    baseURL: "https://script.google.com/macros/s/AKfycbwMsZrKjcEsBY0xEIrcEuzesHBv-K6RiOXJzzFGHz3FngwRBrGdSjqHlcU8l2uSzkWP/exec"
 });
 
 
