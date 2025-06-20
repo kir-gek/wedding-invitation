@@ -4,8 +4,8 @@ export const WeddingSchedule: React.FC = () => {
   return (
     <div className="bg-purple-100 text-gray-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
       {/* Заголовок */}
-      <h2 className="text-center text-4xl font-serif italic mb-10 text-black">
-        Свадебное <br /> расписание
+      <h2 className="font-great text-center text-4xl  italic mb-10 text-black">
+        Свадебное  расписание
       </h2>
 
       {/* Событие 1 */}
@@ -23,7 +23,7 @@ export const WeddingSchedule: React.FC = () => {
               Торжественная роспись
             </div>
             <div className="text-sm text-gray-700 mt-1 mb-2">
-              проспект Мира, д. 119, стр. 421
+              проспект Мира, д. 119, <br></br>стр. 421
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
               Приглашаем вас разделить вместе с нами радость создания новой
@@ -38,7 +38,7 @@ export const WeddingSchedule: React.FC = () => {
         <div className="mb-12 flex space-x-8 items-start">
           {/* Время */}
           <div className="text-right font-bold text-xl min-w-[80px]">
-            <div>13:40</div>
+            <div>13:40 </div>
             <div className="text-sm font-normal mt-1">15.07.2025</div>
           </div>
 
@@ -52,7 +52,7 @@ export const WeddingSchedule: React.FC = () => {
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
               Уважаемые гости, мы хотим сохранить память об этом дне вместе с
-              вами. Давайте сделаем общее фото!
+              вами. Давайте сделаем общее фото! Фотосессия будет проходить с 13:40 до 15:30.
             </p>
           </div>
         </div>

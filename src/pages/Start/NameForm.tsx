@@ -63,8 +63,8 @@ export function NameForm() {
             <option value="" disabled>
               Едут в ресторан?
             </option>
-            <option value="456">Ясен хуй</option>
-            <option value="876">Ннихуя не едут</option>
+            <option value="456">да</option>
+            <option value="876">а сюда тыкать не нада</option>
           </select>
         </div>
 

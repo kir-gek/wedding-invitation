@@ -16,7 +16,7 @@ export const InvitationWithoutRest: React.FC = () => {
         {/* Красивая шапка */}
         <div className="bg-rose-600 py-12 px-6 text-center relative overflow-hidden rounded-t-2xl shadow-xl">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-rose-500 opacity-50 z-0"></div>
-          <h1 className="text-5xl font-serif font-bold text-white mb-2 relative z-10">
+          <h1 className="text-3xl font-serif font-bold text-white mb-2 relative z-10">
             Кирюша & Катюша
           </h1>
         </div>

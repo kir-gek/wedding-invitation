@@ -13,14 +13,6 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // const formData = {
-    //   name: nameGuest || "Гость",
-    //   going: "Идет",
-    //   food: foodPreference,
-    //   alcohol: alcoholPreference,
-    //   comment: comment,
-    // };
-
     try {
       await createZapis(
         nameGuest ? nameGuest : "Гость",
@@ -53,21 +45,24 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
             Есть ли у вас особые предпочтения по еде?
           </h3>
           <div className="space-y-2 pl-2">
-            {["нет", "не ем мясо", "не ем рыбу", "вегетарианец"].map(
-              (option) => (
-                <label key={option} className="block">
-                  <input
-                    type="radio"
-                    name="food"
-                    value={option}
-                    checked={foodPreference === option}
-                    onChange={(e) => setFoodPreference(e.target.value)}
-                    className="mr-2 accent-rose-500"
-                  />
-                  {option}
-                </label>
-              )
-            )}
+            {[
+              "нет",
+              "предпочитаю мясо",
+              "предпочитаю рыбу",
+              "вегетарианец",
+            ].map((option) => (
+              <label key={option} className="block">
+                <input
+                  type="radio"
+                  name="food"
+                  value={option}
+                  checked={foodPreference === option}
+                  onChange={(e) => setFoodPreference(e.target.value)}
+                  className="mr-2 accent-rose-500"
+                />
+                {option}
+              </label>
+            ))}
           </div>
         </div>
 
@@ -78,12 +73,12 @@ export const PreferencesForm: React.FC<Forminterface> = ({ nameGuest }) => {
           </h3>
           <div className="space-y-2 pl-2">
             {[
-              "Красное вино",
-              "Белое вино",
-              "Шампанское",
-              "Виски",
-              "Коньяк",
-              "Не буду пить алкоголь",
+              "красное вино",
+              "белое вино",
+              "шампанское",
+              "виски",
+              "коньяк",
+              "не буду пить алкоголь",
             ].map((option) => (
               <label key={option} className="block">
                 <input

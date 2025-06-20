@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 export const CountdownTimer = () => {
   const targetDate = new Date('2025-07-15T12:40:00+03:00');
@@ -29,32 +29,37 @@ export const CountdownTimer = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, []);
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 text-gray-800 text-lg font-medium">
-      <TimeUnit value={timeLeft.days} label="недель" divideBy={7} />
+    <div className="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 px-2 sm:px-4 overflow-x-auto w-full">
+      <TimeUnit value={Math.floor(timeLeft.days / 7)} label="недель" />
+      <Separator />
       <TimeUnit value={timeLeft.days % 7} label="дней" />
+      <Separator />
       <TimeUnit value={timeLeft.hours} label="часов" />
+      <Separator />
       <TimeUnit value={timeLeft.minutes} label="минут" />
+      <Separator />
       <TimeUnit value={timeLeft.seconds} label="секунд" />
     </div>
   );
 };
 
+const Separator = () => (
+  <div className="text-rose-300 font-bold text-2xl sm:text-3xl">:</div>
+);
+
 type TimeUnitProps = {
   value: number;
   label: string;
-  divideBy?: number;
 };
 
-const TimeUnit = ({ value, label, divideBy }: TimeUnitProps) => {
-  const displayValue = divideBy ? Math.floor(value / divideBy) : value;
-
+const TimeUnit = ({ value, label }: TimeUnitProps) => {
   return (
-    <div className="flex flex-col items-center bg-white bg-opacity-70 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md min-w-[70px]">
-      <div className="text-3xl font-bold text-rose-500">{displayValue}</div>
-      <div className="text-sm tracking-wide uppercase">{label}</div>
+    <div className="flex flex-col items-center bg-white/70 backdrop-blur-md sm:px-3 py-2 rounded-xl shadow-md border border-rose-200 min-w-[56px] sm:min-w-[64px]">
+      <div className="text-xl sm:text-2xl font-bold text-rose-500">{value}</div>
+      <div className="text-xs sm:text-sm tracking-wide uppercase text-gray-600">{label}</div>
     </div>
   );
 };
